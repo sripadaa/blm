@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="css/style.css">
+<div class="form">
+<form action="../backend/complaint_register.php" method="POST">
+  <h2>Register Complaint</h2>
+  <div><label>Complaint Type:</label>
+  <select name="complaint_type" required>
+    <option value="Locker">Locker Related</option>
+    <option value="Bank Service">Bank Service</option>
+  </select></div>
+
+  <div style="margin-top: 10px;"><label>Description:</label>
+  <textarea name="description" required></textarea></div>
+
+  <div><button type="submit">Submit Complaint</button></div>
+</form>
+</div>

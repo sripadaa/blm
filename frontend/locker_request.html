@@ -1,0 +1,21 @@
+<h2>Request Locker</h2>
+
+<form action="../backend/locker_request.php" method="POST">
+  <label>Locker Size:</label>
+  <select name="locker_size" required>
+    <option value="Small">Small</option>
+    <option value="Medium">Medium</option>
+    <option value="Large">Large</option>
+  </select>
+
+  <label>Branch:</label>
+  <select name="branch_name" required>
+    <option value="Main Branch">Main Branch</option>
+    <option value="City Branch">City Branch</option>
+  </select>
+
+  <button type="submit">Request Locker</button>
+</form>
+<a href="../backend/view_locker_request_status.php">
+  View Locker Request Status
+</a>
