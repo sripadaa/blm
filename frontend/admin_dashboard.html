@@ -4,22 +4,42 @@
   <title>Admin Dashboard - ABC Bank</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-  <div class="header">
-    <h1>ABC Bank</h1>
-    <p>Admin Dashboard</p>
-  </div>
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <h2>Admin</h2>
+  <a href="admin_dashboard.html">Dashboard</a>
+  <a href="../backend/admin/view_request.php">Locker Requests</a>
+  <a href="../backend/admin/view_all_complaints.php">Complaints</a>
+  <a href="../backend/admin/logout.php">Logout</a>
+</div>
 
-  <div class="main">
-    <h2>Admin Control Panel</h2>
+<!-- MAIN CONTENT -->
+<div class="content">
 
-    <div class="buttons">
-      <a href="../backend/admin/view_request.php">View Locker Requests</a><br><br>
-      <a href="../backend/admin/view_all_complaints.php">View Complaints</a><br><br>
-      <a href="../backend/admin/logout.php">Logout</a>
+  <h1>ABC Bank</h1>
+  <p>Admin Dashboard</p>
+
+  <h2>Admin Control Panel</h2>
+
+  <div class="dashboard">
+
+    <div class="card">
+      <h3>Locker Requests</h3>
+      <a href="../backend/admin/view_request.php">View</a>
     </div>
+
+    <div class="card">
+      <h3>Complaints</h3>
+      <a href="../backend/admin/view_all_complaints.php">View</a>
+    </div>
+
   </div>
+
+</div>
 
 </body>
+
 </html>
