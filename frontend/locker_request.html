@@ -1,5 +1,12 @@
 <h2>Request Locker</h2>
+<!--<?php
+session_start();
 
+if (!isset($_SESSION['customer_id'])) {
+    header("Location: ../../frontend/login.html");
+    exit();
+}
+?>-->
 <form action="../backend/locker_request.php" method="POST">
   <label>Locker Size:</label>
   <select name="locker_size" required>
