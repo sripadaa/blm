@@ -7,13 +7,36 @@ if (!isset($_SESSION['admin'])) {
     exit();
 }
 
+$search = "";
+$status = "";
+
+if (isset($_GET['search'])) {
+    $search = $_GET['search'];
+}
+
+if (isset($_GET['status'])) {
+    $status = $_GET['status'];
+}
+
 $query = "SELECT lr.request_id, lr.locker_id, c.name,
           l.locker_number, lr.request_status
           FROM locker_request lr
           JOIN customer c ON lr.customer_id = c.customer_id
-          JOIN locker l ON lr.locker_id = l.locker_id";
+          JOIN locker l ON lr.locker_id = l.locker_id
+          WHERE 1";
+
+// 🔍 Search
+if (!empty($search)) {
+    $query .= " AND c.name LIKE '%$search%'";
+}
+
+// 🎯 Filter
+if (!empty($status)) {
+    $query .= " AND lr.request_status = '$status'";
+}
 
 $result = mysqli_query($conn, $query);
+
 ?>
 
 <!DOCTYPE html>
@@ -34,6 +57,18 @@ $result = mysqli_query($conn, $query);
 </div>
 
 <h2 style="text-align:center; margin-top:20px;">Locker Requests</h2>
+<form method="GET" class="search-form">
+    <input type="text" name="search" placeholder="Search by customer name"
+           value="<?= $search ?>">
+
+    <select name="status">
+        <option value="">All Status</option>
+        <option value="Pending" <?= ($status == 'Pending') ? 'selected' : '' ?>>Pending</option>
+        <option value="Approved" <?= ($status == 'Approved') ? 'selected' : '' ?>>Approved</option>
+    </select>
+
+    <button type="submit">Search</button>
+</form>
 
 <table>
 <tr>

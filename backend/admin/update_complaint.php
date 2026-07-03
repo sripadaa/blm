@@ -1,17 +1,19 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['admin'])) {
+    header("Location: ../../frontend/admin_login.html");
+    exit();
+}
 include "../db_connect.php";
 
-$complaint_id = $_POST['complaint_id'];
-$status = $_POST['status'];
-$remark = $_POST['admin_remark'];
+$id = $_GET['id'];
 
-$query = "UPDATE complaint 
-          SET status='$status', admin_remark='$remark'
-          WHERE complaint_id='$complaint_id'";
+$query = "UPDATE complaint SET status='Resolved' WHERE complaint_id='$id'";
 
 if (mysqli_query($conn, $query)) {
-    echo "Complaint updated successfully";
+    header("Location: view_all_complaints.php");
 } else {
-    echo "Error updating complaint";
+    echo "Error updating";
 }
 ?>
