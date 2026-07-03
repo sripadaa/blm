@@ -8,7 +8,7 @@ if (!isset($_SESSION['admin'])) {
 }
 
 // 🔌 DATABASE CONNECTION
-include "../db_connect.php";
+include "../backend/db_connect.php";
 
 // 📊 TOTAL LOCKERS
 $locker_query = "SELECT COUNT(*) as total_lockers FROM locker";
@@ -32,7 +32,7 @@ $complaint_data = mysqli_fetch_assoc($complaint_result);
 <html>
 <head>
   <title>Admin Dashboard - ABC Bank</title>
-  <link rel="stylesheet" href="../../frontend/css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -40,10 +40,10 @@ $complaint_data = mysqli_fetch_assoc($complaint_result);
 <!-- SIDEBAR -->
 <div class="sidebar">
   <h2>Admin</h2>
-  <a href="./admin_dashboard.php">Dashboard</a>
-  <a href="./view_request.php">Locker Requests</a>
-  <a href="./view_all_complaints.php">Complaints</a>
-  <a href="./logout.php">Logout</a>
+  <a href="admin_dashboard.php">Dashboard</a>
+  <a href="../backend/admin/view_request.php">Locker Requests</a>
+  <a href="../backend/admin/view_all_complaints.php">Complaints</a>
+  <a href="../backend/admin/logout.php">Logout</a>
 </div>
 
 <!-- MAIN CONTENT -->
@@ -79,12 +79,12 @@ $complaint_data = mysqli_fetch_assoc($complaint_result);
 
     <div class="card">
       <h3>Locker Requests</h3>
-      <a href="./view_request.php">View</a>
+      <a href="../backend/admin/view_request.php">View</a>
     </div>
 
     <div class="card">
       <h3>Complaints</h3>
-      <a href="./view_all_complaints.php">View</a>
+      <a href="../backend/admin/view_all_complaints.php">View</a>
     </div>
 
   </div>
