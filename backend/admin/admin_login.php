@@ -3,7 +3,7 @@ session_start();
 include "../db_connect.php";
 
 $username = $_POST['username'];
-$password = md5($_POST['password']);
+$password = $_POST['password'];
 
 $query = "SELECT * FROM admin 
           WHERE username='$username' AND password='$password'";

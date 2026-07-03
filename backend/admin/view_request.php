@@ -20,12 +20,22 @@ $result = mysqli_query($conn, $query);
 <html>
 <head>
   <title>Locker Requests</title>
+  <link rel="stylesheet" href="../../frontend/css/style.css">
 </head>
 <body>
 
-<h2>Locker Requests</h2>
+<!-- NAVBAR -->
+<div class="navbar">
+  <h2>Admin Panel</h2>
+  <div>
+    <a href="../../frontend/admin_dashboard.html">Dashboard</a>
+    <a href="logout.php">Logout</a>
+  </div>
+</div>
 
-<table border="1" cellpadding="8">
+<h2 style="text-align:center; margin-top:20px;">Locker Requests</h2>
+
+<table>
 <tr>
   <th>Request ID</th>
   <th>Customer</th>
@@ -34,20 +44,32 @@ $result = mysqli_query($conn, $query);
   <th>Action</th>
 </tr>
 
-<?php while ($row = mysqli_fetch_assoc($result)) { ?>
+<?php while ($row = mysqli_fetch_assoc($result)) { 
+
+  // STATUS BADGE LOGIC
+  if ($row['request_status'] == 'Approved') {
+      $status = "<span class='status-approved'>Approved</span>";
+  } else {
+      $status = "<span class='status-pending'>Pending</span>";
+  }
+?>
+
 <tr>
   <td><?= $row['request_id'] ?></td>
   <td><?= $row['name'] ?></td>
   <td><?= $row['locker_number'] ?></td>
-  <td><?= $row['request_status'] ?></td>
+  <td><?= $status ?></td>
   <td>
     <?php if ($row['request_status'] == 'Pending') { ?>
-      <a href="approve_request.php?request_id=<?= $row['request_id'] ?>&locker_id=<?= $row['locker_id'] ?>">
-        Approve
+      <a class="btn"
+         href="approve_request.php?request_id=<?= $row['request_id'] ?>&locker_id=<?= $row['locker_id'] ?>"
+         onclick="return confirm('Approve this request?')">
+         Approve
       </a>
     <?php } else { echo "Approved"; } ?>
   </td>
 </tr>
+
 <?php } ?>
 
 </table>
